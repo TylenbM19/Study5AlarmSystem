@@ -5,17 +5,17 @@ using UnityEngine.Events;
 
 public class Detector : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<bool> _reached; 
+    [SerializeField] private UnityEvent<bool> _triggered; 
 
     private void OnTriggerEnter(Collider collider)
     {
         if(collider.TryGetComponent<Player>(out Player player))
-            _reached.Invoke(true);
+            _triggered.Invoke(true);
     }
 
     private void OnTriggerExit(Collider collider)
     {
         if (collider.TryGetComponent<Player>(out Player player))
-            _reached.Invoke(false);
+            _triggered.Invoke(false);
     }
 }

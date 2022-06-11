@@ -17,12 +17,12 @@ public class Alarm : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void Setting(bool result)
+    public void SetSetting(bool result)
     {
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        _coroutine = result? StartCoroutine(SetVolume(_maxVolume)) : StartCoroutine(SetVolume(_minVolume));
+        _coroutine = StartCoroutine(result ? SetVolume(_maxVolume): SetVolume(_minVolume));
     }
 
     private IEnumerator SetVolume(float target)
