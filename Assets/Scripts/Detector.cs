@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class AlarmSystem : MonoBehaviour
+public class Detector : MonoBehaviour
 {
     [SerializeField] private UnityEvent<bool> _reached; 
 

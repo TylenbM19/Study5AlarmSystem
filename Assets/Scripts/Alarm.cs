@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SoundControl : MonoBehaviour
+[RequireComponent(typeof (AudioSource))]
+public class Alarm : MonoBehaviour
 {
-    public float volumeMultiplayer = 0.001f;
+    [SerializeField] private float _volumeMultiplayer = 0.001f;
     private AudioSource _audioSource;
     private Coroutine _coroutine;
     private float _minVolume = 0;
@@ -21,17 +22,14 @@ public class SoundControl : MonoBehaviour
         if (_coroutine != null)
             StopCoroutine(_coroutine);
 
-        if (result == true)
-            _coroutine = StartCoroutine(SetVolume(_maxVolume));
-        else
-            _coroutine = StartCoroutine(SetVolume(_minVolume));
+        _coroutine = result? StartCoroutine(SetVolume(_maxVolume)) : StartCoroutine(SetVolume(_minVolume));
     }
 
     private IEnumerator SetVolume(float target)
     {
         while (_audioSource.volume != target)
         {
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, target, volumeMultiplayer);
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, target, _volumeMultiplayer);
             yield return null;
         }
     }

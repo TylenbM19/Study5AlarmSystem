@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlayer : MonoBehaviour
+public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private Transform _path;
     [SerializeField] private float _speed = 2;
